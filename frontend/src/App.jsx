@@ -25,34 +25,108 @@ const Header = () => {
 
     return (
         <header className="top-header">
-            <div className="nav-container">
-                <div style={{ display: 'flex', alignItems: 'center', gap: '2.5rem' }}>
-                    <Link to="/" style={{ fontSize: '1.5rem', fontWeight: 800, color: 'var(--text-primary)', textDecoration: 'none', letterSpacing: '-0.02em' }}>
-                        ProjectFlow<span style={{ color: 'var(--primary)', marginLeft: '2px' }}>.</span>
+            <div className="main-content" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '3rem' }}>
+                    <Link to="/" style={{
+                        fontSize: '1.6rem',
+                        fontWeight: 800,
+                        color: 'var(--text-primary)',
+                        textDecoration: 'none',
+                        letterSpacing: '-0.04em',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '0.5rem'
+                    }}>
+                        <div style={{
+                            width: '40px',
+                            height: '40px',
+                            background: 'linear-gradient(135deg, var(--primary), var(--secondary))',
+                            borderRadius: '12px',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            color: 'white',
+                            fontSize: '1.2rem',
+                            boxShadow: '0 8px 16px rgba(99, 102, 241, 0.3)'
+                        }}>P</div>
+                        ProjectFlow<span style={{ color: 'var(--primary)' }}>.</span>
                     </Link>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', background: '#f8fafc', padding: '0.5rem 1rem', borderRadius: '8px', border: '1px solid var(--border-color)', width: '300px' }}>
-                        <FiSearch color="var(--text-secondary)" />
+
+                    <div style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '0.75rem',
+                        background: 'rgba(241, 245, 249, 0.6)',
+                        padding: '0.65rem 1.25rem',
+                        borderRadius: '14px',
+                        border: '1.5px solid #f1f5f9',
+                        width: '320px',
+                        transition: 'all 0.2s'
+                    }} className="search-bar">
+                        <FiSearch color="var(--text-secondary)" size={18} />
                         <input
-                            placeholder="Search..."
-                            style={{ border: 'none', margin: 0, padding: 0, background: 'transparent', fontSize: '0.9rem' }}
+                            placeholder="Search projects..."
+                            style={{
+                                border: 'none',
+                                margin: 0,
+                                padding: 0,
+                                background: 'transparent',
+                                fontSize: '0.9rem',
+                                color: 'var(--text-primary)',
+                                fontWeight: 500
+                            }}
                         />
                     </div>
                 </div>
 
-                <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', paddingRight: '1.5rem', borderRight: '1px solid var(--border-color)' }}>
-                        <div className="avatar" style={{ width: '32px', height: '32px' }}>{user.name[0]}</div>
-                        <span style={{ fontWeight: 600, fontSize: '0.9rem' }}>{user.name}</span>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '2rem' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                        <div style={{ position: 'relative', cursor: 'pointer', padding: '8px', borderRadius: '10px' }} className="icon-btn">
+                            <FiBell size={22} color="var(--text-secondary)" />
+                            <span style={{
+                                position: 'absolute',
+                                top: '8px',
+                                right: '8px',
+                                width: '10px',
+                                height: '10px',
+                                background: 'var(--danger)',
+                                borderRadius: '50%',
+                                border: '2.5px solid white'
+                            }}></span>
+                        </div>
+                        <FiHelpCircle size={22} color="var(--text-secondary)" cursor="pointer" className="icon-btn" />
                     </div>
-                    <FiHelpCircle size={20} color="var(--text-secondary)" cursor="pointer" />
-                    <div style={{ position: 'relative' }}>
-                        <FiBell size={20} color="var(--text-secondary)" cursor="pointer" />
-                        <span style={{ position: 'absolute', top: '-4px', right: '-4px', width: '8px', height: '8px', background: 'var(--danger)', borderRadius: '50%', border: '2px solid white' }}></span>
+
+                    <div style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '0.85rem',
+                        padding: '4px 4px 4px 12px',
+                        background: 'white',
+                        borderRadius: '16px',
+                        border: '1.5px solid #f1f5f9',
+                        boxShadow: '0 2px 4px rgba(0,0,0,0.02)'
+                    }}>
+                        <span style={{ fontWeight: 700, fontSize: '0.9rem', color: '#1e293b' }}>{user.name}</span>
+                        <div style={{
+                            width: '36px',
+                            height: '36px',
+                            borderRadius: '12px',
+                            background: 'linear-gradient(135deg, #f1f5f9, #e2e8f0)',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            fontWeight: 800,
+                            color: 'var(--primary)',
+                            fontSize: '0.9rem',
+                            border: '1px solid #e2e8f0'
+                        }}>{user.name[0]}</div>
                     </div>
+
                     <button
                         onClick={handleLogout}
                         className="btn-outline"
-                        style={{ padding: '0.5rem 1rem', fontSize: '0.85rem' }}
+                        style={{ padding: '0.65rem 1.25rem', fontSize: '0.9rem', fontWeight: 700, borderRadius: '14px' }}
                     >
                         Sign Out
                     </button>
