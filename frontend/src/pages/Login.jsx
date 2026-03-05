@@ -82,6 +82,10 @@ const Login = () => {
                     </button>
                 </form>
 
+                <div style={{ textAlign: 'center', marginTop: '24px', color: 'var(--accents-5)' }}>
+                    <h6>This is a Demo Project Dummy emails are allowed</h6>
+                </div>
+
                 <div style={{ textAlign: 'center', marginTop: '32px', fontSize: '13px', color: 'var(--accents-5)' }}>
                     Don't have an account? <Link to="/register" style={{ color: 'var(--fg)', fontWeight: 600, textDecoration: 'none' }}>Create one</Link>
                 </div>

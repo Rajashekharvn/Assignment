@@ -90,6 +90,10 @@ const Register = () => {
                     </button>
                 </form>
 
+                <div style={{ textAlign: 'center', marginTop: '24px', color: 'var(--accents-5)' }}>
+                    <h6>This is a Demo Project Dummy email are allowed</h6>
+                </div>
+
                 <div style={{ textAlign: 'center', marginTop: '32px', fontSize: '13px', color: 'var(--accents-5)' }}>
                     Already have a seat? <Link to="/login" style={{ color: 'var(--fg)', fontWeight: 600, textDecoration: 'none' }}>Sign in here</Link>
                 </div>
