@@ -1,120 +1,90 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import api from '../utils/api';
 import { useAuth } from '../context/AuthContext';
-import { FiMail, FiLock, FiArrowRight } from 'react-icons/fi';
+import api from '../utils/api';
+import { FiMail, FiLock, FiChevronRight, FiAlertCircle } from 'react-icons/fi';
 
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
-    const [isLoading, setIsLoading] = useState(false);
+    const [loading, setLoading] = useState(false);
+
     const { login } = useAuth();
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setLoading(true);
         setError('');
-        setIsLoading(true);
         try {
-            const { data } = await api.post('/auth/login', {
-                email,
-                password,
-            });
-            login(data);
+            const res = await api.post('/auth/login', { email, password });
+            login(res.data);
             navigate('/');
         } catch (err) {
-            setError(err.response?.data?.message || 'Invalid credentials. Please try again.');
+            setError(err.response?.data?.message || 'Authentication failed');
         } finally {
-            setIsLoading(false);
+            setLoading(false);
         }
     };
 
     return (
-        <div className="auth-wrapper animate-fade">
-            <div className="auth-form glass-panel">
-                <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
-                    <div style={{
-                        width: '64px',
-                        height: '64px',
-                        background: 'linear-gradient(135deg, var(--primary), var(--secondary))',
-                        borderRadius: '20px',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        color: 'white',
-                        fontSize: '1.8rem',
-                        margin: '0 auto 1.5rem',
-                        boxShadow: '0 12px 24px var(--primary-glow)'
-                    }}>P</div>
-                    <h2 style={{ marginBottom: '0.5rem' }}>Welcome Back</h2>
-                    <p style={{ color: 'var(--text-secondary)', fontWeight: 500 }}>Enter your credentials to access your workshop</p>
+        <div className="auth-wrapper animate-enter">
+            <div className="auth-form">
+                <div style={{ textAlign: 'center', marginBottom: '32px' }}>
+                    <div style={{ width: '40px', height: '40px', background: 'var(--fg)', borderRadius: '10px', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', color: 'var(--bg)', fontWeight: 800, fontSize: '20px', marginBottom: '16px' }}>P</div>
+                    <h2 style={{ marginBottom: '8px' }}>Login</h2>
+                    <p style={{ color: 'var(--accents-5)', fontSize: '14px' }}>Welcome back to your workspace.</p>
                 </div>
 
                 {error && (
-                    <div style={{
-                        background: '#fef2f2',
-                        color: 'var(--danger)',
-                        padding: '1rem',
-                        borderRadius: '12px',
-                        marginBottom: '2rem',
-                        fontSize: '0.9rem',
-                        fontWeight: 600,
-                        border: '1px solid #fee2e2',
-                        textAlign: 'center'
-                    }}>
-                        {error}
+                    <div style={{ background: '#FFF5F5', border: '1px solid #C2255E', color: '#C2255E', padding: '12px', borderRadius: '8px', marginBottom: '24px', fontSize: '13px', display: 'flex', alignItems: 'center', gap: '10px' }}>
+                        <FiAlertCircle /> {error}
                     </div>
                 )}
 
                 <form onSubmit={handleSubmit}>
                     <div className="input-group">
-                        <label>Email Address</label>
+                        <label className="input-label">Corporate Email</label>
                         <div style={{ position: 'relative' }}>
-                            <FiMail style={{ position: 'absolute', left: '1rem', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-muted)' }} />
+                            <FiMail style={{ position: 'absolute', left: '12px', top: '12px', color: 'var(--accents-4)' }} />
                             <input
                                 type="email"
                                 placeholder="name@company.com"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
-                                style={{ paddingLeft: '3rem' }}
                                 required
+                                style={{ paddingLeft: '36px' }}
                             />
                         </div>
                     </div>
 
                     <div className="input-group">
-                        <label>Password</label>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '8px' }}>
+                            <label className="input-label" style={{ margin: 0 }}>Password</label>
+                            <Link to="#" style={{ fontSize: '12px', color: 'var(--accents-5)', textDecoration: 'none' }}>Forgot?</Link>
+                        </div>
                         <div style={{ position: 'relative' }}>
-                            <FiLock style={{ position: 'absolute', left: '1rem', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-muted)' }} />
+                            <FiLock style={{ position: 'absolute', left: '12px', top: '12px', color: 'var(--accents-4)' }} />
                             <input
                                 type="password"
                                 placeholder="••••••••"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
-                                style={{ paddingLeft: '3rem' }}
                                 required
+                                style={{ paddingLeft: '36px' }}
                             />
                         </div>
                     </div>
 
-                    <button
-                        type="submit"
-                        className="btn-primary"
-                        style={{ width: '100%', marginTop: '1rem', height: '52px' }}
-                        disabled={isLoading}
-                    >
-                        {isLoading ? 'Signing In...' : (
-                            <>
-                                Sign In <FiArrowRight />
-                            </>
-                        )}
+                    <button className="btn-primary" style={{ width: '100%', height: '44px', marginTop: '8px' }} disabled={loading}>
+                        {loading ? 'Verifying...' : 'Sign In'} <FiChevronRight style={{ marginLeft: '8px' }} />
                     </button>
                 </form>
 
-                <p style={{ marginTop: '2.5rem', textAlign: 'center', color: 'var(--text-secondary)', fontWeight: 500 }}>
-                    Don't have an account? <Link to="/register" style={{ color: 'var(--primary)', textDecoration: 'none', fontWeight: 700 }}>Join the team</Link>
-                </p>
+                <div style={{ textAlign: 'center', marginTop: '32px', fontSize: '13px', color: 'var(--accents-5)' }}>
+                    Don't have an account? <Link to="/register" style={{ color: 'var(--fg)', fontWeight: 600, textDecoration: 'none' }}>Create one</Link>
+                </div>
             </div>
         </div>
     );
