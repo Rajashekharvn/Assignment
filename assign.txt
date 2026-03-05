@@ -1,0 +1,104 @@
+Hi 👋
+
+As part of the **MERN / MEAN Developer hiring process**, please complete the following technical task.
+
+🚀 **Task: Build a Mini Project Management System**
+
+The application should allow users to create projects and manage tasks within those projects.
+
+---
+
+📌 **Backend (Node.js + Express + MongoDB)**
+
+Create REST APIs for the following:
+
+1️⃣ **User Authentication**
+
+* Register user (name, email, password)
+* Login user (JWT authentication)
+* Password should be hashed using bcrypt
+
+2️⃣ **Project Management**
+
+* Create Project
+* Get All Projects for logged-in user
+* Update Project
+* Delete Project
+
+Project Fields:
+
+* projectName
+* description
+* createdBy
+* createdAt
+
+3️⃣ **Task Management inside Project**
+
+Each project can have multiple tasks.
+
+Create APIs for:
+
+* Add Task to Project
+* Get All Tasks of a Project
+* Update Task
+* Delete Task
+
+Task Fields:
+
+* title
+* description
+* status (todo / in-progress / completed)
+* priority (low / medium / high)
+* dueDate
+* projectId
+
+4️⃣ **Additional Features**
+
+* Pagination for tasks
+* Filter tasks by status
+* Proper error handling
+
+---
+
+🎨 **Frontend (React / Angular)**
+
+Create a simple UI with:
+
+• Login Page
+• Register Page
+• Dashboard
+
+Dashboard Features:
+
+* View all projects
+* Create new project
+* Open a project to view tasks
+* Add / update / delete tasks
+* Change task status
+
+---
+
+⭐ **Bonus (Optional but preferred)**
+
+* Clean folder structure
+* Use Redux / Context API
+* Form validation
+* Use environment variables
+* Docker setup
+* Deploy on Render / Vercel / Railway
+
+---
+
+📦 **Submission**
+
+Please share:
+
+• GitHub Repository
+• README with setup instructions
+• Postman collection (if available)
+
+⏱ **Time to complete:** 48 hours
+
+Once completed, please send the GitHub repository link.
+
+Thank you 👍
