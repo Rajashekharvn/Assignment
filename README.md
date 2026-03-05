@@ -1,49 +1,87 @@
-# ProjectFlow - Mini Project Management System
+# ProjectFlow (SaaS-Grade Project Management)
 
-A full-stack MERN application for managing projects and tasks.
+ProjectFlow is a modern, high-performance project management application built with a premium "Stealth & Precision" UI. It features a robust backend for user authentication and task management, coupled with a fast, responsive frontend.
 
-## Features
-- **User Authentication**: Secure register and login with JWT and bcrypt.
-- **Project Management**: Create, view, and delete projects.
-- **Task Management**: Add, update, delete, and change status of tasks within projects.
-- **Filtering & Pagination**: Filter tasks by status and navigate through pages.
-- **Premium UI**: Clean, responsive, and modern design.
+## 🚀 Features
 
-## Tech Stack
-- **Frontend**: React, Vite, Axios, React Router.
-- **Backend**: Node.js, Express, MongoDB, Mongoose, JWT.
-- **Styling**: Vanilla CSS.
+- **Core Functionality**: Create projects, manage tasks, and track progress through a live board.
+- **Authentication**: Secure JWT-based user registration and login.
+- **Premium UI/UX**: High-density SaaS layout, surgical grid alignment, and Geist-style glassmorphism.
+- **Responsive Design**: fully optimized for all screen sizes.
 
-## Setup Instructions
+## 🛠 Tech Stack
+
+- **Frontend**: React (Vite), React Router Dom, Axios, React Icons, Vanilla CSS
+- **Backend**: Node.js, Express.js, MongoDB (Mongoose), JSON Web Tokens (JWT), Bcrypt.js
+
+---
+
+## 💻 Local Setup Instructions
+
+Follow these steps to get the application running on your local machine.
 
 ### Prerequisites
-- Node.js installed.
-- MongoDB running locally (default: `mongodb://localhost:27017/project_management`).
+- [Node.js](https://nodejs.org/) (v16 or higher)
+- [MongoDB](https://www.mongodb.com/) (Local instance or MongoDB Atlas)
 
-### Backend Setup
-1. Navigate to the `backend` directory.
-2. Install dependencies: `npm install`.
-3. Configure environment variables in `.env`:
-   ```env
-   PORT=5000
-   MONGO_URI=mongodb://localhost:27017/project_management
-   JWT_SECRET=your_secret_key
-   NODE_ENV=development
-   ```
-4. Start the server: `npm start` or `node server.js`.
+### 1. Backend Setup
 
-### Frontend Setup
-1. Navigate to the `frontend` directory.
-2. Install dependencies: `npm install`.
-3. Start the development server: `npm run dev`.
-4. Open the app at `http://localhost:5173`.
+Open a terminal and navigate to the `backend` directory:
+```bash
+cd backend
+```
 
-## API Documentation
-- `POST /api/auth/register` - Register a user.
-- `POST /api/auth/login` - Login and get JWT.
-- `GET /api/projects` - Get all projects (Private).
-- `POST /api/projects` - Create a project (Private).
-- `GET /api/tasks/:projectId` - Get tasks for a project (Private).
-- `POST /api/tasks` - Add task to project (Private).
-- `PUT /api/tasks/:id` - Update task (Private).
-- `DELETE /api/tasks/:id` - Delete task (Private).
+Install the dependencies:
+```bash
+npm install
+```
+
+Create a `.env` file in the `backend` directory and add the following variables:
+```env
+PORT=5000
+MONGO_URI=your_mongodb_connection_string
+JWT_SECRET=your_jwt_secret_key
+NODE_ENV=development
+```
+*(Replace `your_mongodb_connection_string` with your actual MongoDB URI and `your_jwt_secret_key` with a secure random string).*
+
+Start the backend development server:
+```bash
+# If you have nodemon installed globally/locally for dev:
+npm run dev
+# OR start standard:
+npm start
+```
+
+### 2. Frontend Setup
+
+Open a new terminal window and navigate to the `frontend` directory:
+```bash
+cd frontend
+```
+
+Install the dependencies:
+```bash
+npm install
+```
+
+*(Optional)* Create a `.env` file in the `frontend` directory if your backend is not running on the default port:
+```env
+VITE_API_URL=http://localhost:5000/api
+```
+
+Start the frontend development server:
+```bash
+npm run dev
+```
+
+The application should now be running. The frontend will typically be accessible at `http://localhost:5173`.
+
+---
+
+## 🌐 Deployment Overview
+
+If you wish to deploy the application:
+1. **Database**: Use MongoDB Atlas and ensure you whitelist `0.0.0.0/0` in the Network Access settings.
+2. **Backend**: Deploy on platforms like Render or Heroku. Ensure you set the `MONGO_URI` and `JWT_SECRET` environment variables.
+3. **Frontend**: Deploy on platforms like Vercel or Netlify. Set the `VITE_API_URL` environment variable to point to your deployed backend URL.
